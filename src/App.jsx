@@ -20,6 +20,9 @@ function App() {
         <section id="core-concepts">
           <h2>core concepts</h2>
           <ul>
+            {CORE_CONCEPTS.map((concept) => (<CoreConcepts {...concept} />))}
+
+{/* 
             <CoreConcepts 
               title={CORE_CONCEPTS[0].title}
               description={CORE_CONCEPTS[0].description}
@@ -39,7 +42,7 @@ function App() {
               title={CORE_CONCEPTS[3].title}
               description={CORE_CONCEPTS[3].description}
               image={CORE_CONCEPTS[3].image} 
-            />
+            /> */}
           </ul>
         </section>
 
