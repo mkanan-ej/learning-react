@@ -1,7 +1,17 @@
+import { useState } from "react";
 import { CORE_CONCEPTS } from "./data.js";
 import Header from "./components/Header.jsx";
 import CoreConcepts from "./components/CoreConcepts.jsx";
+import TabButton from "./components/TabButton.jsx";
+import { EXAMPLES } from "./data.js";
+
 function App() {
+  const [selected, setselected] = useState("components");
+  function clicked(type){
+    setselected(type);
+
+
+  };
   return (
     <div>
       <Header />
@@ -31,6 +41,27 @@ function App() {
               image={CORE_CONCEPTS[3].image} 
             />
           </ul>
+        </section>
+
+        <section id="examples">
+          <h2>Examples</h2>
+          <menu>
+            <TabButton onSelect={() => clicked('components')}>Components</TabButton>
+            <TabButton onSelect={() => clicked('jsx')}>JSX</TabButton>
+            <TabButton onSelect={() => clicked('props')}>Props</TabButton>
+            <TabButton onSelect={() => clicked('state')}>states</TabButton>
+
+          </menu>
+          <div id="tab-content">
+          <h3>{EXAMPLES[selected].title}</h3>
+          <p>{EXAMPLES[selected].description}</p>
+          <pre>
+            <code>
+              {EXAMPLES[selected].code}
+            </code>
+          </pre>
+
+          </div>
         </section>
       </main>
     </div>
