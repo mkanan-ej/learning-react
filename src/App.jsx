@@ -6,7 +6,7 @@ import TabButton from "./components/TabButton.jsx";
 import { EXAMPLES } from "./data.js";
 
 function App() {
-  const [selected, setselected] = useState("components");
+  const [selected, setselected] = useState();
   function clicked(type){
     setselected(type);
 
@@ -52,7 +52,7 @@ function App() {
             <TabButton onSelect={() => clicked('state')}>states</TabButton>
 
           </menu>
-          <div id="tab-content">
+          {!selected ? <p> please select a topic</p> :  <div id="tab-content">
           <h3>{EXAMPLES[selected].title}</h3>
           <p>{EXAMPLES[selected].description}</p>
           <pre>
@@ -60,8 +60,8 @@ function App() {
               {EXAMPLES[selected].code}
             </code>
           </pre>
+          </div>}
 
-          </div>
         </section>
       </main>
     </div>
