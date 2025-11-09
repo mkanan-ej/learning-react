@@ -1,22 +1,26 @@
 import { EXAMPLES } from "../data.js";
 import TabButton from "./TabButton.jsx";
 import { useState } from "react";
+import Section from "./Section.jsx";
+import Tabs from "./Tabs.jsx";
 export default function Examples(){
     const [selected, setselected] = useState();
     function clicked(type){
         setselected(type);
     };
     return(
-        <section id="examples">
-          <h2>Examples</h2>
-          <menu>
-            <TabButton onSelect={() => clicked('components')}>Components</TabButton>
-            <TabButton onSelect={() => clicked('jsx')}>JSX</TabButton>
-            <TabButton onSelect={() => clicked('props')}>Props</TabButton>
-            <TabButton onSelect={() => clicked('state')}>states</TabButton>
+        <Section title="Example" id="examples">
+          <Tabs buttons={
+            <>
+                <TabButton onClick={() => clicked('components')} id="examples">Components</TabButton>
+                <TabButton onClick={() => clicked('jsx')} id="examples">JSX</TabButton>
+                <TabButton onClick={() => clicked('props')} id="examples">Props</TabButton>
+                <TabButton onClick={() => clicked('state')} id="examples">states</TabButton>
+            </>}>
 
-          </menu>
-          {!selected ? <p> please select a topic</p> :  <div id="tab-content">
+            {!selected ? 
+          <p> please select a topic</p> :  
+          <div id="tab-content">
           <h3>{EXAMPLES[selected].title}</h3>
           <p>{EXAMPLES[selected].description}</p>
           <pre>
@@ -26,7 +30,8 @@ export default function Examples(){
           </pre>
           </div>}
 
-        </section>
+          </Tabs>
+        </Section>
 
     );
 }
